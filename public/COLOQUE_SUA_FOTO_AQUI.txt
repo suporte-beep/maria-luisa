@@ -1,0 +1,6 @@
+Para que a sua foto apareça no aplicativo:
+
+1. Renomeie a foto restaurada da família para: familia-restaurada.png
+2. Coloque o arquivo familia-restaurada.png exatamente nesta pasta (public).
+
+O aplicativo vai ler a imagem automaticamente!
