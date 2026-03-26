@@ -31,7 +31,7 @@ export default function App() {
           <div className="relative bg-white p-4 md:p-6 pb-16 md:pb-20 shadow-2xl rounded-sm transform transition-all duration-700 hover:scale-[1.02] rotate-1 hover:rotate-0 border border-stone-100">
             <div className="overflow-hidden rounded bg-stone-100">
               <img 
-                src="./familia-restaurada.png" 
+                src="/familia-restaurada.png" 
                 alt="Família Restaurada" 
                 className="w-full h-auto object-cover shadow-inner max-h-[65vh] transition-transform duration-1000 hover:scale-105"
               />
@@ -45,7 +45,7 @@ export default function App() {
         {/* Ações */}
         <div className="pt-4 pb-12 flex flex-col items-center gap-8">
           <a 
-            href="./familia-restaurada.png" 
+            href="/familia-restaurada.png" 
             download="Familia_Maria_Luisa_Restaurada.png"
             className="group relative inline-flex items-center gap-3 bg-stone-800 text-stone-50 hover:bg-stone-700 px-10 py-5 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 overflow-hidden"
           >
