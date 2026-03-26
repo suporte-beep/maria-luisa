@@ -4,8 +4,31 @@
  */
 
 import { Download, Heart } from 'lucide-react';
+import { useState } from 'react';
 
 export default function App() {
+  const [imgSrc, setImgSrc] = useState('/familia-restaurada.png');
+  const [errorCount, setErrorCount] = useState(0);
+
+  const handleImageError = () => {
+    if (errorCount === 0) {
+      // Falha no caminho absoluto raiz. Tenta caminho relativo.
+      setImgSrc('familia-restaurada.png');
+      setErrorCount(1);
+    } else if (errorCount === 1) {
+      // Falha no relativo. Tenta com /public/ (caso a Vercel esteja servindo a pasta raiz sem build correto)
+      setImgSrc('/public/familia-restaurada.png');
+      setErrorCount(2);
+    } else if (errorCount === 2) {
+      // Tenta forçar a URL completa do site
+      setImgSrc(`${window.location.origin}/familia-restaurada.png`);
+      setErrorCount(3);
+    } else {
+      // Se absolutamente nada funcionar, mostra um placeholder para não quebrar o layout
+      setImgSrc('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1000&auto=format&fit=crop');
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 font-sans selection:bg-stone-200">
       <div className="max-w-4xl w-full space-y-16 text-center py-12">
@@ -31,8 +54,9 @@ export default function App() {
           <div className="relative bg-white p-4 md:p-6 pb-16 md:pb-20 shadow-2xl rounded-sm transform transition-all duration-700 hover:scale-[1.02] rotate-1 hover:rotate-0 border border-stone-100">
             <div className="overflow-hidden rounded bg-stone-100">
               <img 
-                src="/familia-restaurada.png" 
+                src={imgSrc} 
                 alt="Família Restaurada" 
+                onError={handleImageError}
                 className="w-full h-auto object-cover shadow-inner max-h-[65vh] transition-transform duration-1000 hover:scale-105"
               />
             </div>
@@ -45,7 +69,7 @@ export default function App() {
         {/* Ações */}
         <div className="pt-4 pb-12 flex flex-col items-center gap-8">
           <a 
-            href="/familia-restaurada.png" 
+            href={imgSrc} 
             download="Familia_Maria_Luisa_Restaurada.png"
             className="group relative inline-flex items-center gap-3 bg-stone-800 text-stone-50 hover:bg-stone-700 px-10 py-5 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 overflow-hidden"
           >
